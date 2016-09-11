@@ -1,0 +1,156 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ParentalControlService",
+		"_postman_id": "0c567fc8-7021-6a0f-2686-3ebacc5e00d1",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "movieParentalControlLevelIsLessThanCustomerParentalControlPreferenceLevel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "tests[\"Body is correct\"] = responseBody === \"true\";"
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/parental-control",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n   \"movieId\":\"C\",\r\n   \"parentalControlLevelPreference\":\"15\"\r\n}\r\n   \r\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "movieParentalControlLevelIsEqualToCustomerParentalControlPreferenceLevel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "tests[\"Body is correct\"] = responseBody === \"true\";"
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/parental-control",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n   \"movieId\":\"C\",\r\n   \"parentalControlLevelPreference\":\"12\"\r\n}\r\n   \r\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "movieParentalControlLevelIsMoreThanCustomerParentalControlPreferenceLevel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "tests[\"Body is correct\"] = responseBody === \"false\";"
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/parental-control",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n   \"movieId\":\"C\",\r\n   \"parentalControlLevelPreference\":\"PG\"\r\n}\r\n   \r\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "movieTitleNotFound",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "tests[\"Body matches string\"] = responseBody.has(\"This movie title is not found.\");"
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/parental-control",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n   \"movieId\":\"ABC\",\r\n   \"parentalControlLevelPreference\":\"PG\"\r\n}\r\n   \r\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "requestCausedTechnicalFailureException",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "tests[\"Body is correct\"] = responseBody === \"false\";"
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/parental-control",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n   \"movieId\":\"F\",\r\n   \"parentalControlLevelPreference\":\"PG\"\r\n}\r\n   \r\n"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
